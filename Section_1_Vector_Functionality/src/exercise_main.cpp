@@ -37,6 +37,9 @@ int main()
     std::vector<int> empty_vector;
     count = countMultiplesOfFive(empty_vector);
     std::cout << (count == 0 ? "Check 3 passed" : "Failed third check, should find 0 multiples and found " + std::to_string(count)) << std::endl;
-    
+
+    //Added new test for check_add_elements to see if addElements is working properly
+    std::cout << (check_add_elements() == true ? "Check 4 passed" : "Failed fourth check") << std::endl;   
+
     return 0;
 }
