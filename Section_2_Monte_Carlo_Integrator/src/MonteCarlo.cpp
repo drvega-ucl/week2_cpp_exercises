@@ -2,10 +2,9 @@
 #include <random>
 #include <functional>
 
-bool InsideUnitSphere(double x, double y, double z)
-{
-    return ((x*x + y*y + z*z) <= 1);
-}
+//Is InsideUnitSphere lambda function
+
+auto InsideUnitSphere = [](double x, double y, double z) {return (x*x + y*y + z*z) <= 1;};
 
 double IntegrateMonteCarlo3D(int n_points, double min, double max)
 {
@@ -21,6 +20,9 @@ double IntegrateMonteCarlo3D(int n_points, double min, double max)
     //set up real number distribution
     std::uniform_real_distribution<double> uniform_dist(min,max);
 
+    //Set up std::function
+    std::function<bool(double,double,double)> isInside = InsideUnitSphere;
+
     for(int i = 0; i < n_points; i++)
     {
         //generate random points here
@@ -28,7 +30,7 @@ double IntegrateMonteCarlo3D(int n_points, double min, double max)
         double y = uniform_dist(rng_mt);
         double z = uniform_dist(rng_mt);
 
-        if(InsideUnitSphere(x, y, z)) count++;
+        if(isInside(x, y, z)) count++;
     }
 
     return static_cast<double>(count) / n_points * VolCube;
