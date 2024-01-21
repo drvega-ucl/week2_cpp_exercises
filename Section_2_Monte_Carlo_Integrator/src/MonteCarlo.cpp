@@ -23,12 +23,16 @@ double IntegrateMonteCarlo3D(int n_points, double min, double max)
     //Set up std::function
     std::function<bool(double,double,double)> isInside = InsideUnitSphere;
 
+    //Create bind
+
+    auto bindRandom = std::bind(uniform_dist,rng_mt);
+
     for(int i = 0; i < n_points; i++)
     {
         //generate random points here
-        double x = uniform_dist(rng_mt);
-        double y = uniform_dist(rng_mt);
-        double z = uniform_dist(rng_mt);
+        double x = bindRandom();
+        double y = bindRandom();
+        double z = bindRandom();
 
         if(isInside(x, y, z)) count++;
     }
