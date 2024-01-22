@@ -36,6 +36,27 @@ bool checkStringConversion()
     return okay;
 }
 
+bool checkMultiplyConversion()
+{
+    Fraction test1 = Fraction(1,2);
+    test1.multiply(2);
+
+    bool okay = approx(test1.toDouble(), 1.0 , 1e-10);
+
+    Fraction test2 = Fraction(3,9);
+    test2.multiply(0);
+
+    okay &= approx(test2.toDouble(), 0.0, 1e-10);
+
+    Fraction test3 = Fraction(6,10);
+    test3.multiply(5);
+
+    okay &= approx(test3.toDouble(), 3.0, 1e-10);
+
+
+    return okay;
+}
+
 int main()
 {
     std::cout << "Check double conversion." << std::endl;
@@ -43,6 +64,9 @@ int main()
 
     std::cout << "Check string conversion." << std::endl;
     std::cout << (checkStringConversion() ? "String conversion okay." : "String conversion incorrect.") << std::endl;
+
+    std::cout << "Check multiplication conversion." << std::endl;
+    std::cout << (checkMultiplyConversion() ? "Multiplication conversion okay." : "Multiplication conversion incorrect.") << std::endl;
 
     
     
