@@ -61,6 +61,27 @@ bool checkMultiplyConversion()
 
 
     return okay;
+
+}
+
+bool checkReciprocalConversion()
+{
+    Fraction test1 = Fraction(2,1);
+    test1.reciprocal();
+
+    bool okay = approx(test1.toDouble(), 0.5, 1e-10);
+
+    Fraction test2 = Fraction(4,1);
+    test2.reciprocal();
+
+    okay &= approx(test2.toDouble(), 0.25, 1e-10);
+
+    Fraction test3 = Fraction(80,36);
+    test3.reciprocal();
+
+    okay &= approx(test3.toDouble(), 0.45, 1e-10);
+
+    return okay;
 }
 
 int main()
@@ -74,7 +95,8 @@ int main()
     std::cout << "Check multiplication conversion." << std::endl;
     std::cout << (checkMultiplyConversion() ? "Multiplication conversion okay." : "Multiplication conversion incorrect.") << std::endl;
 
-    
+    std::cout << "Check reciprocal conversion." << std::endl;
+    std::cout << (checkReciprocalConversion() ? "Reciprocal conversion okay." : "Reciprocal conversion incorrect.") << std::endl;
     
     return 0;
 }

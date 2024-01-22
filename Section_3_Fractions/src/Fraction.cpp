@@ -24,6 +24,7 @@ void Fraction::setDenominator(int b)
 void Fraction::reciprocal()
 {
     std::swap(numerator,denominator);
+
 }
 
 double Fraction::toDouble()
