@@ -25,6 +25,12 @@ bool checkStringConversion()
 {
     bool okay = Fraction(1, 2).toString() == "1/2";
 
+    okay &= Fraction(2,4).toString() == "1/2";
+
+    okay &= Fraction(3,9).toString() == "1/3";
+
+    okay &= Fraction (8,12).toString() == "2/3";
+
     okay &= Fraction(2, 3).toString() == "2/3";
 
     okay &= Fraction(7, 9).toString() == "7/9";
