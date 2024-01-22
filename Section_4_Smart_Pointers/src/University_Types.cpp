@@ -2,26 +2,25 @@
 #include <iostream>
 #include <string>
 #include "University_Types.h"
+#include <vector>
 
 using namespace std;
 
-Student::Student(const std::string &n) : name(n), id(max_id++) {}
+void Student::setDepartment(Department *dept) {
+    department = dept;
+    if (department) {
+        department -> addStudent(this);
+    }
 
-Student::~Student()
-    cout << "Student " << name << " destroyed." << endl;
-}
+    string nameDept = Department(*dept).getName();
 
-int Student::getId() const
-{
-    return id;
+    cout << "Student " << name << " has been added to department " << nameDept << endl;
 }
 
 // Static variables need to be initialised outside their class declaration
 int Student::max_id = 0;
 
-Department::Department(const std::string &n) : name(n) {}
-
-Department::~Department()
-{
-    cout << "Department " << name << " destroyed." << endl;
+void Department::addStudent(Student *student) {
+    students.push_back(student);
 }
+

@@ -1,6 +1,7 @@
 #include <memory>
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -24,9 +25,12 @@ class Student
         cout << "Student " << name << " destroyed." << endl;
     }
 
-    
+    // Setter to assign a department to a studnet 
+    void setDepartment(Department *dept);
 
-    int getId() {return id;}
+    int getId() const { return id;};
+
+    string getName() const {return name;};
 
     private:
     // Static variable means same value shared by every object in class
@@ -37,6 +41,7 @@ class Student
     string name;
     int id;
     // add a pointer to the department here
+    Department *department;
 };
 
 class Department
@@ -49,7 +54,17 @@ class Department
         cout << "Department " << name << " destroyed." << endl;
     }
 
+    void addStudent(Student *student);
+
+    string getName() const {return name;};
+
+    auto getList() {
+        return students;
+    }
+
     private:
     string name;
     // add a vector or map of pointers to students here
+
+    std::vector<Student *> students;
 };
