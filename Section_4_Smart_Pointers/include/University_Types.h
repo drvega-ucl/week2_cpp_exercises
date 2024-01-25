@@ -26,7 +26,7 @@ class Student
     }
 
     // Setter to assign a department to a studnet 
-    void setDepartment(Department *dept);
+    void setDepartment(Department *dept); //shared_ptr in answers
 
     int getId() const { return id;};
 
@@ -41,7 +41,7 @@ class Student
     string name;
     int id;
     // add a pointer to the department here
-    Department *department;
+    Department *department; //Weak_ptr in answers
 };
 
 class Department
@@ -54,7 +54,7 @@ class Department
         cout << "Department " << name << " destroyed." << endl;
     }
 
-    void addStudent(Student *student);
+    void addStudent(Student *student); //Shared_ptr in answers
 
     string getName() const {return name;};
 
